@@ -1,3 +1,92 @@
+# OOP vs structural programming
+
+Object-Oriented Programming (OOP) and Structural Programming are two different paradigms in programming. Here's a short and concise comparison between them using an example in JavaScript:
+
+Example: Building a Car
+
+1. Structural Programming:
+In structural programming, the focus is on breaking down a problem into smaller, manageable procedures or functions. Let's say we want to build a car using structural programming in JavaScript:
+
+```javascript
+// Structural Programming
+
+// Functions for building a car
+function buildEngine() {
+  // Code to build the car engine
+}
+
+function buildChassis() {
+  // Code to build the car chassis
+}
+
+function buildBody() {
+  // Code to build the car body
+}
+
+// Main function to build a car
+function buildCar() {
+  buildEngine();
+  buildChassis();
+  buildBody();
+}
+
+// Call the main function
+buildCar();
+```
+
+In structural programming, the car-building process is divided into separate functions, each responsible for a specific part of the car. These functions are then called sequentially from the main `buildCar` function to build the complete car.
+
+2. Object-Oriented Programming:
+In Object-Oriented Programming (OOP), the focus is on creating objects that encapsulate both data and the functions that operate on that data. Each object represents a specific entity or concept. Let's build a car using OOP in JavaScript:
+
+```javascript
+// Object-Oriented Programming
+
+// Car class
+class Car {
+  constructor() {
+    // Code to initialize car properties
+  }
+
+  buildEngine() {
+    // Code to build the car engine
+  }
+
+  buildChassis() {
+    // Code to build the car chassis
+  }
+
+  buildBody() {
+    // Code to build the car body
+  }
+
+  // Main method to build the car
+  buildCar() {
+    this.buildEngine();
+    this.buildChassis();
+    this.buildBody();
+  }
+}
+
+// Create a new instance of Car
+const myCar = new Car();
+
+// Call the buildCar method on the instance
+myCar.buildCar();
+```
+
+In OOP, we define a `Car` class with properties and methods related to a car. The `buildCar` method encapsulates the process of building a car by calling the internal methods. We then create an instance of the `Car` class and call the `buildCar` method on that instance.
+
+In summary, structural programming focuses on breaking down a problem into smaller functions, while OOP emphasizes creating objects that encapsulate data and behavior. The choice between these paradigms depends on the nature of the problem and the desired code organization and maintainability.
+
+
+
+
+
+
+
+
+
 # Inheritance
 
 In JavaScript, inheritance is a mechanism that allows objects to inherit properties and methods from a parent object or class. It enables code reuse and the creation of hierarchical relationships between objects.
@@ -323,3 +412,148 @@ In this example, the `Animal` class has a `speak` method, and the `Dog` class ex
 
 # Cohession
 
+In object-oriented programming (OOP), cohesion refers to the measure of how strongly related and focused the responsibilities of a class or module are. A high cohesion indicates that the class or module is designed to perform a specific and well-defined task, while a low cohesion implies that it has multiple unrelated responsibilities.
+
+Here's an example in JavaScript to illustrate cohesion:
+
+```javascript
+class Calculator {
+  constructor() {
+    // ...
+  }
+
+  add(a, b) {
+    return a + b;
+  }
+
+  subtract(a, b) {
+    return a - b;
+  }
+
+  multiply(a, b) {
+    return a * b;
+  }
+
+  divide(a, b) {
+    return a / b;
+  }
+}
+```
+
+In the above example, the `Calculator` class has high cohesion because it is solely responsible for performing arithmetic operations. All the methods within the class are related to the core functionality of a calculator. The class has a clear and focused purpose, making it highly cohesive.
+
+On the other hand, if the `Calculator` class also had methods for handling user input, displaying results, and managing memory, it would have low cohesion. Mixing unrelated responsibilities within a single class reduces the cohesion and can make the code harder to understand and maintain.
+
+By designing classes with high cohesion, you can achieve better organization, code reusability, and maintainability in your object-oriented programs.
+
+
+
+
+
+
+
+
+
+# Access specifiers or access modifiers
+
+Access specifiers, also known as access modifiers, are keywords in object-oriented programming (OOP) languages that define the visibility and accessibility of class members (properties and methods). They determine which parts of a class can be accessed or modified by other parts of the program.
+
+In JavaScript, access specifiers are not explicitly supported as in some other OOP languages like Java or C++. However, you can achieve similar functionality using naming conventions and coding practices. Here's a brief explanation:
+
+1. Public Access:
+   Public members are accessible from anywhere, both inside and outside the class. In JavaScript, you can achieve public access by simply declaring class members without any specific access specifier.
+
+   ```javascript
+   class Car {
+     constructor() {
+       this.make = 'Toyota';  // Public property
+     }
+
+     startEngine() {  // Public method
+       console.log('Engine started!');
+     }
+   }
+
+   const myCar = new Car();
+   console.log(myCar.make);  // Accessing public property
+   myCar.startEngine();  // Invoking public method
+   ```
+
+2. Private Access:
+   Private members are only accessible within the class itself. JavaScript does not have a built-in private keyword, but you can use a naming convention to indicate private members. Typically, an underscore prefix (_) is used to denote private members, but it's important to note that this is only a convention and does not enforce true encapsulation.
+
+   ```javascript
+   class Car {
+     constructor() {
+       this._make = 'Toyota';  // Private property
+     }
+
+     _startEngine() {  // Private method
+       console.log('Engine started!');
+     }
+
+     getMake() {  // Public method to access private property
+       return this._make;
+     }
+   }
+
+   const myCar = new Car();
+   console.log(myCar.getMake());  // Accessing private property indirectly
+   myCar._startEngine();  // Invoking private method (convention, not enforced)
+   ```
+
+It's important to note that the above approach using naming conventions is not secure or strictly enforced in JavaScript. In some other languages, access specifiers provide stronger encapsulation and access control.
+
+
+
+
+
+
+
+
+
+# Constructor and super
+
+In object-oriented programming (OOP), a constructor is a special method used to initialize objects of a class. It is typically defined within a class and is automatically called when an object of that class is created. The constructor is responsible for setting up the initial state of the object.
+
+In JavaScript, the constructor is defined using the `constructor` keyword within a class. It is a function that is executed when the `new` keyword is used to create an instance of the class. Here's a simple example:
+
+```javascript
+class Car {
+  constructor(make, model) {
+    this.make = make;
+    this.model = model;
+  }
+}
+
+const myCar = new Car("Toyota", "Corolla");
+console.log(myCar.make);   // Output: Toyota
+console.log(myCar.model);  // Output: Corolla
+```
+
+In the above example, the `Car` class has a constructor that takes two parameters, `make` and `model`. When a new instance of the `Car` class is created using the `new` keyword, the constructor is automatically invoked with the provided arguments. The constructor sets the `make` and `model` properties of the object.
+
+The `super` keyword is used to call the constructor of the parent class from within a subclass. It is often used when extending classes to inherit properties and behaviors from a parent class. Here's a brief example:
+
+```javascript
+class Vehicle {
+  constructor(color) {
+    this.color = color;
+  }
+}
+
+class Car extends Vehicle {
+  constructor(make, model, color) {
+    super(color);
+    this.make = make;
+    this.model = model;
+  }
+}
+
+const myCar = new Car("Toyota", "Corolla", "blue");
+console.log(myCar.color);  // Output: blue
+console.log(myCar.make);   // Output: Toyota
+console.log(myCar.model);  // Output: Corolla
+```
+
+In this example, the `Car` class extends the `Vehicle` class. The `Car` class has its own constructor that takes three parameters, `make`, `model`, and `color`. The `super(color)` statement is used to call the constructor of the `Vehicle` class and pass the `color` argument. This allows the `Car` instance to inherit the `color` property from the `Vehicle` class, in addition to having its own `make` and `model` properties.
